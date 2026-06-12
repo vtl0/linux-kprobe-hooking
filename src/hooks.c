@@ -7,7 +7,7 @@
 int x64_sys_write_hk(struct kprobe *probe, struct pt_regs *regs) {
   char copied_buf[16];
   struct pt_regs *usermode_regs = (struct pt_regs *)regs->di;
-  const char *buf = usermode_regs->si;
+  const char *buf = (const char *)usermode_regs->si;
   size_t count = usermode_regs->dx;
   int fd = usermode_regs->di;
 
